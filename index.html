@@ -11,30 +11,25 @@
     --bg: #0a0a0a;
     --accent: #00bfff;
     --accent-dim: rgba(0,191,255,0.10);
-    --accent-mid: rgba(0,191,255,0.18);
+    --accent-mid: rgba(0,191,255,0.16);
     --fg: #e8e8e8;
     --fg-muted: #6a6a6a;
     --fg-dim: #3a3a3a;
     --border-glass: rgba(255,255,255,0.07);
-    --glass-bg: rgba(14,14,14,0.55);
-    --glass-bg-heavy: rgba(14,14,14,0.72);
-    --glass-blur: 22px;
+    --glass: rgba(12,12,12,0.55);
+    --glass-heavy: rgba(12,12,12,0.72);
+    --blur: 22px;
     --success: #00e676;
     --danger: #ff3d5a;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    font-family:'Space Grotesk',sans-serif;
-    background:var(--bg);color:var(--fg);
-    height:100vh;overflow:hidden;position:relative;
-  }
+  body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--fg);height:100vh;overflow:hidden;position:relative;}
 
-  /* ── Flow gradient blobs ── */
   .flow-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
   .flow-blob{position:absolute;border-radius:50%;filter:blur(130px);animation:blobFloat 20s ease-in-out infinite;}
-  .flow-blob:nth-child(1){width:650px;height:650px;background:var(--accent);opacity:0.09;top:-8%;left:-4%;animation-duration:26s;}
-  .flow-blob:nth-child(2){width:550px;height:550px;background:#00bfff;opacity:0.07;bottom:-12%;right:-8%;animation-duration:32s;animation-delay:-6s;}
-  .flow-blob:nth-child(3){width:400px;height:400px;background:#0088cc;opacity:0.06;top:35%;left:55%;animation-duration:23s;animation-delay:-12s;}
+  .flow-blob:nth-child(1){width:700px;height:700px;background:var(--accent);opacity:0.10;top:-8%;left:-4%;animation-duration:26s;}
+  .flow-blob:nth-child(2){width:550px;height:550px;background:#00bfff;opacity:0.08;bottom:-12%;right:-8%;animation-duration:32s;animation-delay:-6s;}
+  .flow-blob:nth-child(3){width:400px;height:400px;background:#006699;opacity:0.07;top:35%;left:55%;animation-duration:23s;animation-delay:-12s;}
   @keyframes blobFloat{
     0%,100%{transform:translate(0,0) scale(1);}
     25%{transform:translate(70px,-50px) scale(1.12);}
@@ -42,248 +37,119 @@
     75%{transform:translate(50px,25px) scale(1.06);}
   }
 
-  /* ── Glassmorphism utility ── */
-  .glass{
-    background:var(--glass-bg);
-    backdrop-filter:blur(var(--glass-blur));
-    -webkit-backdrop-filter:blur(var(--glass-blur));
-    border:1px solid var(--border-glass);
-  }
-  .glass-heavy{
-    background:var(--glass-bg-heavy);
-    backdrop-filter:blur(var(--glass-blur));
-    -webkit-backdrop-filter:blur(var(--glass-blur));
-    border:1px solid var(--border-glass);
-  }
+  .glass{background:var(--glass);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--border-glass);}
+  .glass-heavy{background:var(--glass-heavy);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--border-glass);}
 
-  /* ── Entry screen ── */
-  .entry-screen{
-    position:fixed;inset:0;z-index:100;
-    display:flex;align-items:center;justify-content:center;
-    background:var(--bg);
-    transition:opacity 0.5s,visibility 0.5s;
-  }
+  /* Entry */
+  .entry-screen{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--bg);transition:opacity 0.5s,visibility 0.5s;}
   .entry-screen.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-  .entry-card{
-    border-radius:20px;padding:52px 44px;width:100%;max-width:440px;
-    text-align:center;position:relative;overflow:hidden;
-  }
-  .entry-card::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(0,191,255,0.4),transparent);
-  }
-  .entry-card::after{
-    content:'';position:absolute;bottom:0;left:20%;right:20%;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);
-  }
+  .entry-card{border-radius:20px;padding:52px 44px;width:100%;max-width:440px;text-align:center;position:relative;overflow:hidden;}
+  .entry-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,191,255,0.5),transparent);}
+  .entry-card::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);}
   .entry-logo{font-size:46px;font-weight:700;letter-spacing:-1.5px;margin-bottom:8px;}
   .entry-logo span{color:var(--accent);}
-  .entry-subtitle{color:var(--fg-muted);font-size:14px;margin-bottom:40px;font-weight:300;line-height:1.5;}
+  .entry-subtitle{color:var(--fg-muted);font-size:14px;margin-bottom:40px;font-weight:300;line-height:1.6;}
   .entry-input-group{position:relative;margin-bottom:24px;}
-  .entry-input-group input{
-    width:100%;padding:14px 18px 14px 46px;
-    background:rgba(0,0,0,0.4);border:1px solid var(--border-glass);border-radius:12px;
-    color:var(--fg);font-family:'Space Grotesk',sans-serif;font-size:15px;
-    outline:none;transition:border-color 0.3s,box-shadow 0.3s;
-  }
+  .entry-input-group input{width:100%;padding:14px 18px 14px 46px;background:rgba(0,0,0,0.45);border:1px solid var(--border-glass);border-radius:12px;color:var(--fg);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s,box-shadow 0.3s;}
   .entry-input-group input:focus{border-color:rgba(0,191,255,0.5);box-shadow:0 0 0 3px var(--accent-dim);}
   .entry-input-group input::placeholder{color:var(--fg-dim);}
   .entry-input-group i{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--fg-muted);font-size:14px;}
-  .entry-btn{
-    width:100%;padding:14px;background:var(--accent);color:var(--bg);
-    border:none;border-radius:12px;font-family:'Space Grotesk',sans-serif;
-    font-size:15px;font-weight:600;cursor:pointer;
-    transition:transform 0.15s,box-shadow 0.3s;
-  }
+  .entry-btn{width:100%;padding:14px;background:var(--accent);color:var(--bg);border:none;border-radius:12px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:transform 0.15s,box-shadow 0.3s;}
   .entry-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,191,255,0.3);}
   .entry-btn:active{transform:translateY(0);}
   .entry-error{color:var(--danger);font-size:13px;margin-top:14px;min-height:18px;}
 
-  /* ── Chat app ── */
+  /* Chat app */
   .chat-app{display:none;height:100vh;position:relative;z-index:1;}
   .chat-app.active{display:flex;}
 
-  /* ── Sidebar ── */
-  .sidebar{
-    width:270px;
-    display:flex;flex-direction:column;flex-shrink:0;
-    border-right:1px solid var(--border-glass);
-    position:relative;z-index:2;
-  }
+  /* Sidebar */
+  .sidebar{width:270px;display:flex;flex-direction:column;flex-shrink:0;position:relative;z-index:2;}
   .sidebar-header{padding:22px 24px;border-bottom:1px solid var(--border-glass);}
   .sidebar-brand{font-size:24px;font-weight:700;letter-spacing:-0.5px;}
   .sidebar-brand span{color:var(--accent);}
-  .sidebar-section-title{
-    padding:18px 24px 10px;font-size:11px;font-weight:600;
-    text-transform:uppercase;letter-spacing:1.5px;color:var(--fg-muted);
-  }
+  .sidebar-section-title{padding:18px 24px 10px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--fg-muted);}
   .user-list{flex:1;overflow-y:auto;padding:6px 14px;}
   .user-list::-webkit-scrollbar{width:4px;}
-  .user-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px;}
-  .user-item{
-    display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;
-    transition:background 0.2s;
-  }
+  .user-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:2px;}
+  .user-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;transition:background 0.2s;}
   .user-item:hover{background:rgba(0,191,255,0.06);}
-  .user-avatar{
-    width:32px;height:32px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:600;color:var(--bg);flex-shrink:0;
-  }
+  .user-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--bg);flex-shrink:0;}
   .user-name{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .user-status-dot{
-    width:7px;height:7px;border-radius:50%;background:var(--success);
-    margin-left:auto;flex-shrink:0;animation:pulseDot 2s ease-in-out infinite;
-  }
+  .user-status-dot{width:7px;height:7px;border-radius:50%;background:var(--success);margin-left:auto;flex-shrink:0;animation:pulseDot 2s ease-in-out infinite;}
   @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.35;}}
   .sidebar-footer{padding:14px 24px;border-top:1px solid var(--border-glass);display:flex;align-items:center;gap:10px;}
   .sidebar-footer .user-avatar{width:34px;height:34px;font-size:14px;}
   .sidebar-footer .self-name{font-size:14px;font-weight:500;flex:1;}
-  .btn-icon{
-    width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-    background:transparent;border:1px solid var(--border-glass);border-radius:8px;
-    color:var(--fg-muted);cursor:pointer;transition:all 0.2s;font-size:13px;
-  }
+  .btn-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--border-glass);border-radius:8px;color:var(--fg-muted);cursor:pointer;transition:all 0.2s;font-size:13px;}
   .btn-icon:hover{color:var(--accent);border-color:rgba(0,191,255,0.3);background:var(--accent-dim);}
 
-  /* ── Chat main ── */
+  /* Chat main */
   .chat-main{flex:1;display:flex;flex-direction:column;min-width:0;position:relative;}
-  .chat-header{
-    padding:16px 24px;border-bottom:1px solid var(--border-glass);
-    display:flex;align-items:center;gap:12px;z-index:2;
-  }
-  .chat-header-icon{
-    width:38px;height:38px;border-radius:10px;
-    background:var(--accent-dim);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--accent);font-size:16px;
-    border:1px solid rgba(0,191,255,0.12);
-  }
+  .chat-header{padding:16px 24px;border-bottom:1px solid var(--border-glass);display:flex;align-items:center;gap:12px;z-index:2;}
+  .chat-header-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:16px;border:1px solid rgba(0,191,255,0.12);}
   .chat-header-info h2{font-size:16px;font-weight:600;}
   .chat-header-info p{font-size:12px;color:var(--fg-muted);margin-top:1px;}
-  .conn-badge{
-    margin-left:auto;font-size:11px;padding:5px 12px;border-radius:20px;
-    font-weight:500;display:flex;align-items:center;gap:6px;
-    border:1px solid var(--border-glass);background:rgba(0,0,0,0.25);color:var(--fg-muted);
-    transition:all 0.3s;
-  }
-  .conn-badge.connected{color:var(--success);border-color:rgba(0,230,118,0.2);}
-  .conn-badge.connected .conn-dot{background:var(--success);}
-  .conn-badge.reconnecting{color:#ffab00;border-color:rgba(255,171,0,0.2);}
-  .conn-badge.reconnecting .conn-dot{background:#ffab00;}
+  .conn-badge{margin-left:auto;font-size:11px;padding:5px 12px;border-radius:20px;font-weight:500;display:flex;align-items:center;gap:6px;border:1px solid var(--border-glass);background:rgba(0,0,0,0.3);color:var(--fg-muted);transition:all 0.3s;}
+  .conn-badge.ok{color:var(--success);border-color:rgba(0,230,118,0.2);}
+  .conn-badge.ok .conn-dot{background:var(--success);}
+  .conn-badge.wait{color:#ffab00;border-color:rgba(255,171,0,0.2);}
+  .conn-badge.wait .conn-dot{background:#ffab00;}
+  .conn-badge.off{color:var(--danger);border-color:rgba(255,61,90,0.2);}
+  .conn-badge.off .conn-dot{background:var(--danger);}
   .conn-dot{width:6px;height:6px;border-radius:50%;background:var(--fg-dim);transition:background 0.3s;}
 
-  /* ── Messages ── */
-  .messages-area{
-    flex:1;overflow-y:auto;padding:20px 24px;
-    display:flex;flex-direction:column;gap:4px;scroll-behavior:smooth;
-    position:relative;z-index:1;
-  }
+  /* Messages */
+  .messages-area{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:4px;scroll-behavior:smooth;position:relative;z-index:1;}
   .messages-area::-webkit-scrollbar{width:6px;}
   .messages-area::-webkit-scrollbar-track{background:transparent;}
-  .messages-area::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:3px;}
-
-  .date-divider{
-    display:flex;align-items:center;gap:14px;padding:14px 0 8px;
-    font-size:11px;color:var(--fg-dim);font-weight:500;letter-spacing:0.5px;
-  }
-  .date-divider::before,.date-divider::after{
-    content:'';flex:1;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);
-  }
-
+  .messages-area::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.05);border-radius:3px;}
+  .date-divider{display:flex;align-items:center;gap:14px;padding:16px 0 8px;font-size:11px;color:var(--fg-dim);font-weight:500;letter-spacing:0.5px;}
+  .date-divider::before,.date-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);}
   .msg-group{display:flex;gap:10px;padding:6px 0;max-width:72%;animation:msgIn 0.35s ease-out;}
   @keyframes msgIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
   .msg-group.self{align-self:flex-end;flex-direction:row-reverse;}
-  .msg-avatar{
-    width:34px;height:34px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:12px;font-weight:600;color:var(--bg);flex-shrink:0;margin-top:2px;
-  }
+  .msg-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--bg);flex-shrink:0;margin-top:2px;}
   .msg-content{display:flex;flex-direction:column;gap:3px;}
   .msg-group.self .msg-content{align-items:flex-end;}
   .msg-author{font-size:12px;font-weight:600;padding:0 4px;display:flex;align-items:center;gap:6px;}
   .msg-time{font-weight:300;color:var(--fg-muted);font-size:10px;}
-  .msg-bubble{
-    padding:10px 15px;border-radius:16px;font-size:14px;line-height:1.55;
-    word-break:break-word;
-    background:rgba(18,18,18,0.5);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border:1px solid var(--border-glass);
-  }
-  .msg-group.self .msg-bubble{
-    background:rgba(0,191,255,0.10);
-    border-color:rgba(0,191,255,0.14);
-  }
-
-  /* System messages */
+  .msg-bubble{padding:10px 15px;border-radius:16px;font-size:14px;line-height:1.55;word-break:break-word;background:rgba(18,18,18,0.45);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--border-glass);}
+  .msg-group.self .msg-bubble{background:rgba(0,191,255,0.09);border-color:rgba(0,191,255,0.12);}
   .system-msg{text-align:center;padding:8px 0;animation:msgIn 0.35s ease-out;}
-  .system-msg span{
-    font-size:12px;color:var(--fg-muted);
-    background:rgba(18,18,18,0.45);
-    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    padding:4px 16px;border-radius:20px;border:1px solid var(--border-glass);
-  }
-
-  /* Empty state */
+  .system-msg span{font-size:12px;color:var(--fg-muted);background:rgba(18,18,18,0.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:4px 16px;border-radius:20px;border:1px solid var(--border-glass);}
   .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:12px;color:var(--fg-dim);}
-  .empty-state i{font-size:40px;color:var(--accent);opacity:0.25;}
+  .empty-state i{font-size:40px;color:var(--accent);opacity:0.2;}
   .empty-state p{font-size:14px;}
 
-  /* Typing indicator */
+  /* Typing */
   .typing-indicator{padding:2px 24px 4px;font-size:12px;color:var(--fg-muted);min-height:20px;z-index:1;}
   .typing-dots{display:inline-flex;gap:3px;margin-left:4px;vertical-align:middle;}
-  .typing-dots span{width:4px;height:4px;border-radius:50%;background:var(--fg-muted);animation:typingBounce 1.2s infinite;}
+  .typing-dots span{width:4px;height:4px;border-radius:50%;background:var(--fg-muted);animation:tb 1.2s infinite;}
   .typing-dots span:nth-child(2){animation-delay:0.15s;}
   .typing-dots span:nth-child(3){animation-delay:0.3s;}
-  @keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.3;}30%{transform:translateY(-4px);opacity:1;}}
+  @keyframes tb{0%,60%,100%{transform:translateY(0);opacity:0.3;}30%{transform:translateY(-4px);opacity:1;}}
 
-  /* Input area */
-  .chat-input-area{
-    padding:16px 24px 22px;border-top:1px solid var(--border-glass);z-index:2;
-  }
+  /* Input */
+  .chat-input-area{padding:16px 24px 22px;border-top:1px solid var(--border-glass);z-index:2;}
   .input-wrapper{display:flex;gap:10px;align-items:flex-end;}
-  .input-field-wrap{flex:1;position:relative;}
-  .input-field-wrap textarea{
-    width:100%;padding:12px 16px;
-    background:rgba(0,0,0,0.35);border:1px solid var(--border-glass);border-radius:14px;
-    color:var(--fg);font-family:'Space Grotesk',sans-serif;font-size:14px;
-    resize:none;outline:none;max-height:120px;min-height:46px;line-height:1.5;
-    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    transition:border-color 0.3s,box-shadow 0.3s;
-  }
+  .input-field-wrap{flex:1;}
+  .input-field-wrap textarea{width:100%;padding:12px 16px;background:rgba(0,0,0,0.35);border:1px solid var(--border-glass);border-radius:14px;color:var(--fg);font-family:'Space Grotesk',sans-serif;font-size:14px;resize:none;outline:none;max-height:120px;min-height:46px;line-height:1.5;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:border-color 0.3s,box-shadow 0.3s;}
   .input-field-wrap textarea:focus{border-color:rgba(0,191,255,0.45);box-shadow:0 0 0 3px var(--accent-dim);}
   .input-field-wrap textarea::placeholder{color:var(--fg-dim);}
-  .send-btn{
-    width:46px;height:46px;border-radius:14px;background:var(--accent);
-    border:none;color:var(--bg);font-size:16px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:transform 0.15s,box-shadow 0.3s,opacity 0.2s;flex-shrink:0;
-  }
+  .send-btn{width:46px;height:46px;border-radius:14px;background:var(--accent);border:none;color:var(--bg);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.15s,box-shadow 0.3s,opacity 0.2s;flex-shrink:0;}
   .send-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,191,255,0.35);}
   .send-btn:active{transform:translateY(0);}
-  .send-btn:disabled{opacity:0.25;cursor:default;transform:none;box-shadow:none;}
+  .send-btn:disabled{opacity:0.2;cursor:default;transform:none;box-shadow:none;}
 
   /* Toast */
-  .toast-container{position:fixed;top:20px;right:20px;z-index:200;display:flex;flex-direction:column;gap:8px;}
-  .toast{
-    padding:12px 18px;border-radius:12px;font-size:13px;color:var(--fg);
-    animation:toastIn 0.3s ease-out;
-    display:flex;align-items:center;gap:8px;max-width:340px;
-    background:rgba(14,14,14,0.7);
-    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-    border:1px solid var(--border-glass);
-  }
+  .toast-container{position:fixed;top:20px;right:20px;z-index:200;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+  .toast{padding:12px 18px;border-radius:12px;font-size:13px;color:var(--fg);animation:toastIn 0.3s ease-out;display:flex;align-items:center;gap:8px;max-width:340px;background:rgba(12,12,12,0.7);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border-glass);pointer-events:auto;}
   .toast i{color:var(--accent);}
   @keyframes toastIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
 
   /* Mobile */
-  .mobile-toggle{
-    display:none;width:36px;height:36px;border-radius:10px;
-    background:rgba(0,0,0,0.3);border:1px solid var(--border-glass);
-    color:var(--fg);font-size:14px;cursor:pointer;
-    align-items:center;justify-content:center;
-  }
+  .mobile-toggle{display:none;width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.3);border:1px solid var(--border-glass);color:var(--fg);font-size:14px;cursor:pointer;align-items:center;justify-content:center;}
   .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:49;}
   .sidebar-overlay.active{display:block;}
   @media(max-width:768px){
@@ -302,11 +168,10 @@
   <div class="flow-blob"></div>
 </div>
 
-<!-- Entry screen -->
 <div class="entry-screen" id="entryScreen">
   <div class="entry-card glass-heavy">
     <div class="entry-logo">Liam<span>Chat</span></div>
-    <p class="entry-subtitle">Pick a name and jump in. The archive is forever.</p>
+    <p class="entry-subtitle">Pick a name and jump in. Everything is saved forever.</p>
     <div class="entry-input-group">
       <i class="fa-solid fa-at"></i>
       <input type="text" id="nameInput" placeholder="Choose your display name" maxlength="20" autocomplete="off">
@@ -319,7 +184,6 @@
 <div class="toast-container" id="toastContainer"></div>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- Chat app -->
 <div class="chat-app" id="chatApp">
   <aside class="sidebar glass-heavy" id="sidebar">
     <div class="sidebar-header">
@@ -363,490 +227,434 @@
   </main>
 </div>
 
-<script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
+<script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
 <script>
 (function() {
   'use strict';
 
-  // ── Config ──
+  /* ══════════════════════════════════
+     Config
+     ══════════════════════════════════ */
   var MQTT_URL = 'wss://broker.emqx.io:8084/mqtt';
-  var TOPIC_MSG        = 'liamchat/v3/msg';
-  var TOPIC_PRESENCE   = 'liamchat/v3/presence';
-  var TOPIC_TYPING     = 'liamchat/v3/typing';
-  var TOPIC_HISTORY_REQ  = 'liamchat/v3/history_req';
-  var TOPIC_HISTORY_RESP = 'liamchat/v3/history_resp';
-  var LOCAL_MSG_KEY    = 'liamchat_v3_messages';
-  var MAX_LOCAL_MSGS   = 1000;
+  var TOPIC_MSG       = 'liamchat_v5/msg';
+  var TOPIC_PRESENCE  = 'liamchat_v5/presence';
+  var TOPIC_TYPING    = 'liamchat_v5/typing';
+  var TOPIC_HIST_REQ  = 'liamchat_v5/histreq';
+  var TOPIC_HIST_RESP = 'liamchat_v5/histresp';
+  var STORE_KEY       = 'liamchat_v5_archive';
+  var MAX_ARCHIVE     = 2000;
 
-  // ── State ──
-  var currentUser = null;
-  var mqttClient = null;
-  var isConnected = false;
-  var renderedIds = {};
-  var onlineUsers = {};
-  var typingUsers = {};
-  var typingTimeout = null;
-  var heartbeatInterval = null;
-  var historyReceived = false;
-  var pendingRenders = [];
+  /* ══════════════════════════════════
+     State
+     ══════════════════════════════════ */
+  var currentUser  = null;
+  var mqttClient   = null;
+  var bcChannel    = null;
+  var isConnected  = false;
+  var renderedIds  = {};
+  var onlineUsers  = {};
+  var typingUsers  = {};
+  var typingTimer  = null;
+  var heartbeatIv  = null;
+  var histTimer    = null;
 
-  // ── DOM ──
-  var entryScreen   = document.getElementById('entryScreen');
-  var nameInput     = document.getElementById('nameInput');
-  var joinBtn       = document.getElementById('joinBtn');
-  var entryError    = document.getElementById('entryError');
-  var chatApp       = document.getElementById('chatApp');
-  var messagesArea  = document.getElementById('messagesArea');
-  var msgInput      = document.getElementById('msgInput');
-  var sendBtn       = document.getElementById('sendBtn');
-  var userListEl    = document.getElementById('userList');
-  var selfAvatar    = document.getElementById('selfAvatar');
-  var selfNameDisp  = document.getElementById('selfNameDisplay');
-  var headerSub     = document.getElementById('headerSubtitle');
-  var typingInd     = document.getElementById('typingIndicator');
-  var toastContainer= document.getElementById('toastContainer');
-  var sidebar       = document.getElementById('sidebar');
-  var sidebarOverlay= document.getElementById('sidebarOverlay');
-  var mobileToggle  = document.getElementById('mobileToggle');
-  var leaveBtn      = document.getElementById('leaveBtn');
-  var connBadge     = document.getElementById('connBadge');
-  var connText      = document.getElementById('connText');
+  /* ══════════════════════════════════
+     DOM
+     ══════════════════════════════════ */
+  var $entry      = document.getElementById('entryScreen');
+  var $nameInput  = document.getElementById('nameInput');
+  var $joinBtn    = document.getElementById('joinBtn');
+  var $entryErr   = document.getElementById('entryError');
+  var $app        = document.getElementById('chatApp');
+  var $msgs       = document.getElementById('messagesArea');
+  var $input      = document.getElementById('msgInput');
+  var $sendBtn    = document.getElementById('sendBtn');
+  var $userList   = document.getElementById('userList');
+  var $selfAv     = document.getElementById('selfAvatar');
+  var $selfName   = document.getElementById('selfNameDisplay');
+  var $headerSub  = document.getElementById('headerSubtitle');
+  var $typing     = document.getElementById('typingIndicator');
+  var $toasts     = document.getElementById('toastContainer');
+  var $sidebar    = document.getElementById('sidebar');
+  var $overlay    = document.getElementById('sidebarOverlay');
+  var $mobToggle  = document.getElementById('mobileToggle');
+  var $leaveBtn   = document.getElementById('leaveBtn');
+  var $connBadge  = document.getElementById('connBadge');
+  var $connText   = document.getElementById('connText');
 
-  // ── Utilities ──
-  function uid() {
-    return Date.now().toString(36) + Math.random().toString(36).slice(2, 9);
-  }
-  function nameToColor(name) {
-    var h = 0;
-    for (var i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h);
-    return 'hsl(' + (Math.abs(h) % 360) + ',65%,55%)';
-  }
-  function initials(name) { return name.slice(0, 2).toUpperCase(); }
-  function fmtTime(ts) { return new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
-  function fmtDate(ts) { return new Date(ts).toLocaleDateString([], { weekday: 'long', month: 'short', day: 'numeric' }); }
-  function esc(text) { var d = document.createElement('div'); d.textContent = text; return d.innerHTML; }
+  /* ══════════════════════════════════
+     Utilities
+     ══════════════════════════════════ */
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 9); }
+  function nameColor(n) { var h=0; for(var i=0;i<n.length;i++) h=n.charCodeAt(i)+((h<<5)-h); return 'hsl('+Math.abs(h)%360+',65%,55%)'; }
+  function init2(n) { return n.slice(0,2).toUpperCase(); }
+  function fTime(ts) { return new Date(ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
+  function fDate(ts) { return new Date(ts).toLocaleDateString([],{weekday:'long',month:'short',day:'numeric'}); }
+  function esc(t) { var d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
 
-  // ── Local storage for messages ──
-  function loadLocalMessages() {
-    try {
-      var raw = localStorage.getItem(LOCAL_MSG_KEY);
-      return raw ? JSON.parse(raw) : [];
-    } catch(e) { return []; }
-  }
-
-  function saveLocalMessages(msgs) {
-    try {
-      // Cap at MAX_LOCAL_MSGS
-      if (msgs.length > MAX_LOCAL_MSGS) msgs = msgs.slice(msgs.length - MAX_LOCAL_MSGS);
-      localStorage.setItem(LOCAL_MSG_KEY, JSON.stringify(msgs));
-    } catch(e) { /* storage full, clear old */ localStorage.removeItem(LOCAL_MSG_KEY); }
+  /* ══════════════════════════════════
+     Toast
+     ══════════════════════════════════ */
+  function toast(text) {
+    var t = document.createElement('div'); t.className='toast';
+    t.innerHTML='<i class="fa-solid fa-circle-info"></i> '+esc(text);
+    $toasts.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0'; t.style.transition='opacity 0.3s'; setTimeout(function(){t.remove();},300); }, 3500);
   }
 
-  function appendLocalMessage(msg) {
-    var msgs = loadLocalMessages();
-    // Dedup
-    for (var i = 0; i < msgs.length; i++) {
-      if (msgs[i].id === msg.id) return;
-    }
-    msgs.push(msg);
-    saveLocalMessages(msgs);
+  /* ══════════════════════════════════
+     Connection status
+     ══════════════════════════════════ */
+  function setConn(s) {
+    $connBadge.className = 'conn-badge';
+    if (s === 'ok')  { $connBadge.classList.add('ok');  $connText.textContent='Live'; isConnected=true; }
+    else if (s==='wait') { $connBadge.classList.add('wait'); $connText.textContent='Connecting'; isConnected=false; }
+    else { $connBadge.classList.add('off'); $connText.textContent='Local only'; isConnected=false; }
   }
 
-  function mergeLocalMessages(incoming) {
-    var local = loadLocalMessages();
-    var index = {};
-    local.forEach(function(m) { index[m.id] = true; });
+  /* ══════════════════════════════════
+     Local archive (localStorage)
+     ══════════════════════════════════ */
+  function loadArchive() {
+    try { var r=localStorage.getItem(STORE_KEY); return r?JSON.parse(r):[]; } catch(e){ return []; }
+  }
+  function saveArchive(msgs) {
+    try { if(msgs.length>MAX_ARCHIVE) msgs=msgs.slice(msgs.length-MAX_ARCHIVE); localStorage.setItem(STORE_KEY,JSON.stringify(msgs)); } catch(e){ localStorage.removeItem(STORE_KEY); }
+  }
+  function addToArchive(msg) {
+    var all = loadArchive();
+    for (var i=0;i<all.length;i++) { if(all[i].id===msg.id) return; }
+    all.push(msg); saveArchive(all);
+  }
+  function mergeIntoArchive(incoming) {
+    var all = loadArchive();
+    var idx = {}; all.forEach(function(m){idx[m.id]=true;});
     var added = false;
-    incoming.forEach(function(m) {
-      if (!index[m.id]) { local.push(m); added = true; }
-    });
-    if (added) {
-      local.sort(function(a, b) { return a.ts - b.ts; });
-      saveLocalMessages(local);
-    }
+    incoming.forEach(function(m){ if(!idx[m.id]){all.push(m);added=true;} });
+    if (added) { all.sort(function(a,b){return a.ts-b.ts;}); saveArchive(all); }
     return added;
   }
 
-  // ── Toast ──
-  function showToast(text) {
-    var t = document.createElement('div');
-    t.className = 'toast';
-    t.innerHTML = '<i class="fa-solid fa-circle-info"></i> ' + esc(text);
-    toastContainer.appendChild(t);
-    setTimeout(function() {
-      t.style.opacity = '0'; t.style.transition = 'opacity 0.3s';
-      setTimeout(function() { t.remove(); }, 300);
-    }, 3000);
-  }
+  /* ══════════════════════════════════
+     Render: messages
+     ══════════════════════════════════ */
+  var lastDate = '';
 
-  // ── Connection status ──
-  function setConnStatus(status) {
-    connBadge.className = 'conn-badge';
-    if (status === 'connected') {
-      connBadge.classList.add('connected');
-      connText.textContent = 'Connected';
-      isConnected = true;
-    } else if (status === 'reconnecting') {
-      connBadge.classList.add('reconnecting');
-      connText.textContent = 'Reconnecting';
-      isConnected = false;
-    } else {
-      connText.textContent = 'Connecting';
-      isConnected = false;
-    }
-  }
-
-  // ── Render messages ──
-  var lastRenderedDate = '';
-
-  function appendMessage(msg, scroll) {
+  function renderMsg(msg, doScroll) {
     if (renderedIds[msg.id]) return;
     renderedIds[msg.id] = true;
 
     // Date divider
-    var msgDate = fmtDate(msg.ts);
-    if (msgDate !== lastRenderedDate) {
-      lastRenderedDate = msgDate;
-      var divider = document.createElement('div');
-      divider.className = 'date-divider';
-      divider.textContent = msgDate;
-      messagesArea.appendChild(divider);
+    var d = fDate(msg.ts);
+    if (d !== lastDate) {
+      lastDate = d;
+      var div = document.createElement('div'); div.className='date-divider'; div.textContent=d;
+      $msgs.appendChild(div);
     }
 
-    var isSelf = currentUser && msg.userId === currentUser.id;
-    var group = document.createElement('div');
-    group.className = 'msg-group' + (isSelf ? ' self' : '');
-
-    var bg = msg.userColor || nameToColor(msg.userName);
-    var ini = initials(msg.userName);
-    var time = fmtTime(msg.ts);
-
-    group.innerHTML =
-      '<div class="msg-avatar" style="background:' + bg + '">' + esc(ini) + '</div>' +
-      '<div class="msg-content">' +
-        '<div class="msg-author" style="color:' + bg + '">' +
-          esc(msg.userName) +
-          ' <span class="msg-time">' + time + '</span>' +
-        '</div>' +
-        '<div class="msg-bubble">' + esc(msg.text) + '</div>' +
+    var self = currentUser && msg.userId === currentUser.id;
+    var g = document.createElement('div');
+    g.className = 'msg-group' + (self ? ' self' : '');
+    var c = msg.userColor || nameColor(msg.userName);
+    g.innerHTML =
+      '<div class="msg-avatar" style="background:'+c+'">'+esc(init2(msg.userName))+'</div>'+
+      '<div class="msg-content">'+
+        '<div class="msg-author" style="color:'+c+'">'+esc(msg.userName)+' <span class="msg-time">'+fTime(msg.ts)+'</span></div>'+
+        '<div class="msg-bubble">'+esc(msg.text)+'</div>'+
       '</div>';
-
-    messagesArea.appendChild(group);
-    if (scroll !== false) scrollToBottom();
+    $msgs.appendChild(g);
+    if (doScroll !== false) scrollEnd();
   }
 
-  function appendSystemMsg(text, ts) {
-    var msgDate = ts ? fmtDate(ts) : fmtDate(Date.now());
-    if (msgDate !== lastRenderedDate) {
-      lastRenderedDate = msgDate;
-      var divider = document.createElement('div');
-      divider.className = 'date-divider';
-      divider.textContent = msgDate;
-      messagesArea.appendChild(divider);
-    }
-
-    var div = document.createElement('div');
-    div.className = 'system-msg';
-    div.innerHTML = '<span>' + esc(text) + '</span>';
-    messagesArea.appendChild(div);
-    scrollToBottom();
+  function renderSys(text, ts) {
+    var d = fDate(ts||Date.now());
+    if (d !== lastDate) { lastDate=d; var div=document.createElement('div'); div.className='date-divider'; div.textContent=d; $msgs.appendChild(div); }
+    var el = document.createElement('div'); el.className='system-msg';
+    el.innerHTML='<span>'+esc(text)+'</span>';
+    $msgs.appendChild(el);
+    scrollEnd();
   }
 
-  function renderFullHistory(msgs) {
-    messagesArea.innerHTML = '';
-    lastRenderedDate = '';
-    renderedIds = {};
-
-    if (!msgs || msgs.length === 0) {
-      messagesArea.innerHTML = '<div class="empty-state" id="emptyState"><i class="fa-regular fa-comments"></i><p>No messages yet. Say something.</p></div>';
+  function renderFullArchive(msgs) {
+    $msgs.innerHTML=''; lastDate=''; renderedIds={};
+    if (!msgs||!msgs.length) {
+      $msgs.innerHTML='<div class="empty-state"><i class="fa-regular fa-comments"></i><p>No messages yet. Say something.</p></div>';
       return;
     }
-
-    msgs.sort(function(a, b) { return a.ts - b.ts; });
-    msgs.forEach(function(msg) {
-      if (msg.type === 'system') {
-        // Render system message
-        var msgDate = fmtDate(msg.ts);
-        if (msgDate !== lastRenderedDate) {
-          lastRenderedDate = msgDate;
-          var divider = document.createElement('div');
-          divider.className = 'date-divider';
-          divider.textContent = msgDate;
-          messagesArea.appendChild(divider);
-        }
-        var div = document.createElement('div');
-        div.className = 'system-msg';
-        div.innerHTML = '<span>' + esc(msg.text) + '</span>';
-        messagesArea.appendChild(div);
-        renderedIds[msg.id] = true;
+    msgs.sort(function(a,b){return a.ts-b.ts;});
+    msgs.forEach(function(m){
+      if (m.type==='system') {
+        var d=fDate(m.ts);
+        if(d!==lastDate){lastDate=d;var div=document.createElement('div');div.className='date-divider';div.textContent=d;$msgs.appendChild(div);}
+        var el=document.createElement('div');el.className='system-msg';el.innerHTML='<span>'+esc(m.text)+'</span>';$msgs.appendChild(el);
+        renderedIds[m.id]=true;
       } else {
-        appendMessage(msg, false);
+        renderMsg(m, false);
       }
     });
-    scrollToBottom();
+    scrollEnd();
   }
 
-  function scrollToBottom() {
-    requestAnimationFrame(function() {
-      messagesArea.scrollTop = messagesArea.scrollHeight;
-    });
-  }
+  function scrollEnd() { requestAnimationFrame(function(){$msgs.scrollTop=$msgs.scrollHeight;}); }
 
-  // ── User list ──
-  function renderUserList() {
-    userListEl.innerHTML = '';
-    Object.keys(onlineUsers).forEach(function(id) {
-      var u = onlineUsers[id];
-      var item = document.createElement('div');
-      item.className = 'user-item';
-      var isYou = currentUser && id === currentUser.id;
-      item.innerHTML =
-        '<div class="user-avatar" style="background:' + (u.color || nameToColor(u.name)) + '">' + esc(initials(u.name)) + '</div>' +
-        '<span class="user-name">' + esc(u.name) + (isYou ? ' <small style="color:var(--fg-muted)">(you)</small>' : '') + '</span>' +
+  /* ══════════════════════════════════
+     Render: user list
+     ══════════════════════════════════ */
+  function renderUsers() {
+    $userList.innerHTML='';
+    var keys=Object.keys(onlineUsers);
+    keys.forEach(function(id){
+      var u=onlineUsers[id];
+      var el=document.createElement('div'); el.className='user-item';
+      var isYou = currentUser && id===currentUser.id;
+      el.innerHTML=
+        '<div class="user-avatar" style="background:'+(u.color||nameColor(u.name))+'">'+esc(init2(u.name))+'</div>'+
+        '<span class="user-name">'+esc(u.name)+(isYou?' <small style="color:var(--fg-muted)">(you)</small>':'')+'</span>'+
         '<span class="user-status-dot"></span>';
-      userListEl.appendChild(item);
+      $userList.appendChild(el);
     });
-    headerSub.textContent = Object.keys(onlineUsers).length + ' online — The one big room';
+    $headerSub.textContent = keys.length+' online — The one big room';
   }
 
-  // ── Typing display ──
-  function updateTypingDisplay() {
-    var now = Date.now();
-    Object.keys(typingUsers).forEach(function(name) {
-      if (now - typingUsers[name] > 3500) delete typingUsers[name];
-    });
-    var names = Object.keys(typingUsers);
-    if (names.length === 0) { typingInd.innerHTML = ''; return; }
-    var text;
-    if (names.length === 1) text = names[0] + ' is typing';
-    else if (names.length === 2) text = names[0] + ' and ' + names[1] + ' are typing';
-    else text = names.length + ' people are typing';
-    typingInd.innerHTML = text + '<span class="typing-dots"><span></span><span></span><span></span></span>';
+  /* ══════════════════════════════════
+     Render: typing
+     ══════════════════════════════════ */
+  function updateTyping() {
+    var now=Date.now();
+    Object.keys(typingUsers).forEach(function(n){ if(now-typingUsers[n]>3500) delete typingUsers[n]; });
+    var names=Object.keys(typingUsers);
+    if(!names.length){$typing.innerHTML='';return;}
+    var t;
+    if(names.length===1) t=names[0]+' is typing';
+    else if(names.length===2) t=names[0]+' and '+names[1]+' are typing';
+    else t=names.length+' people are typing';
+    $typing.innerHTML=t+'<span class="typing-dots"><span></span><span></span><span></span></span>';
   }
-  setInterval(updateTypingDisplay, 500);
+  setInterval(updateTyping, 500);
 
-  // ── Join ──
+  /* ══════════════════════════════════
+     Join
+     ══════════════════════════════════ */
   function joinChat() {
-    var name = nameInput.value.trim();
-    entryError.textContent = '';
-    if (!name) { entryError.textContent = 'You need a name to join.'; return; }
-    if (name.length < 2) { entryError.textContent = 'At least 2 characters.'; return; }
-    if (name.length > 20) { entryError.textContent = '20 characters max.'; return; }
+    var name = $nameInput.value.trim();
+    $entryErr.textContent='';
+    if(!name){$entryErr.textContent='You need a name to join.';return;}
+    if(name.length<2){$entryErr.textContent='At least 2 characters.';return;}
 
-    currentUser = {
-      id: uid(),
-      name: name,
-      color: nameToColor(name),
-      joinedAt: Date.now()
-    };
+    currentUser = { id:uid(), name:name, color:nameColor(name), joinedAt:Date.now() };
 
-    entryScreen.classList.add('hidden');
-    chatApp.classList.add('active');
+    $entry.classList.add('hidden');
+    $app.classList.add('active');
 
-    selfAvatar.style.background = currentUser.color;
-    selfAvatar.textContent = initials(currentUser.name);
-    selfNameDisp.textContent = currentUser.name;
+    $selfAv.style.background=currentUser.color;
+    $selfAv.textContent=init2(currentUser.name);
+    $selfName.textContent=currentUser.name;
 
-    onlineUsers[currentUser.id] = { name: currentUser.name, color: currentUser.color, lastSeen: Date.now() };
-    renderUserList();
+    onlineUsers[currentUser.id]={name:currentUser.name,color:currentUser.color,lastSeen:Date.now()};
+    renderUsers();
 
-    // Load local archive first
-    var localMsgs = loadLocalMessages();
-    renderFullHistory(localMsgs);
+    // Load local archive immediately
+    renderFullArchive(loadArchive());
 
-    // Connect MQTT and request history from peers
+    // Connect real-time
+    connectBC();
     connectMQTT();
 
-    msgInput.focus();
-    showToast('Welcome, ' + currentUser.name);
+    $input.focus();
+    toast('Welcome, '+currentUser.name);
   }
 
-  // ── MQTT ──
+  /* ══════════════════════════════════
+     BroadcastChannel (same-browser tabs)
+     ══════════════════════════════════ */
+  function connectBC() {
+    try {
+      bcChannel = new BroadcastChannel('liamchat_v5');
+      bcChannel.onmessage = function(e) {
+        var d = e.data;
+        if (!d || !d.type) return;
+
+        if (d.type==='msg') {
+          if (currentUser && d.msg.userId===currentUser.id) return;
+          if (renderedIds[d.msg.id]) return;
+          addToArchive(d.msg);
+          renderMsg(d.msg, true);
+        }
+        else if (d.type==='sys') {
+          if (renderedIds[d.msg.id]) return;
+          addToArchive(d.msg);
+          renderSys(d.msg.text, d.msg.ts);
+        }
+        else if (d.type==='presence') {
+          handlePresence(d);
+        }
+        else if (d.type==='typing') {
+          if (currentUser && d.userId===currentUser.id) return;
+          if (d.action==='typing') typingUsers[d.userName]=Date.now();
+          else delete typingUsers[d.userName];
+        }
+      };
+    } catch(e) { /* BroadcastChannel not supported */ }
+  }
+
+  function bcSend(obj) {
+    if (bcChannel) try { bcChannel.postMessage(obj); } catch(e) {}
+  }
+
+  /* ══════════════════════════════════
+     MQTT (cross-device real-time)
+     ══════════════════════════════════ */
   function connectMQTT() {
     if (typeof mqtt === 'undefined') {
-      setConnStatus('reconnecting');
-      showToast('Chat network unavailable — viewing local archive only.');
+      setConn('off');
+      toast('Chat network unavailable — local mode only.');
       return;
     }
 
-    var clientId = 'liamchat_' + currentUser.id;
+    setConn('wait');
+    var cid = 'liam_' + currentUser.id;
 
     try {
       mqttClient = mqtt.connect(MQTT_URL, {
-        clientId: clientId,
+        clientId: cid,
         clean: true,
-        connectTimeout: 8000,
-        reconnectPeriod: 4000,
+        connectTimeout: 10000,
+        reconnectPeriod: 5000,
         keepalive: 30
       });
 
       mqttClient.on('connect', function() {
-        setConnStatus('connected');
-        mqttClient.subscribe([TOPIC_MSG, TOPIC_PRESENCE, TOPIC_TYPING, TOPIC_HISTORY_REQ, TOPIC_HISTORY_RESP], { qos: 0 });
-
-        // Announce presence
+        setConn('ok');
+        mqttClient.subscribe([TOPIC_MSG, TOPIC_PRESENCE, TOPIC_TYPING, TOPIC_HIST_REQ, TOPIC_HIST_RESP], {qos:0});
         publishPresence('join');
 
-        // Request history from peers (for messages we don't have locally)
+        // Request archive from peers
         requestHistory();
 
         // Heartbeat
-        if (heartbeatInterval) clearInterval(heartbeatInterval);
-        heartbeatInterval = setInterval(function() {
-          publishPresence('heartbeat');
-        }, 5000);
+        if (heartbeatIv) clearInterval(heartbeatIv);
+        heartbeatIv = setInterval(function(){ publishPresence('heartbeat'); }, 5000);
       });
 
       mqttClient.on('message', function(topic, payload) {
-        try {
-          var data = JSON.parse(payload.toString());
-          handleIncoming(topic, data);
-        } catch(e) {}
+        try { handleMQTT(topic, JSON.parse(payload.toString())); } catch(e) {}
       });
 
-      mqttClient.on('error', function() { setConnStatus('reconnecting'); });
-      mqttClient.on('reconnect', function() { setConnStatus('reconnecting'); });
-      mqttClient.on('close', function() { setConnStatus('reconnecting'); });
+      mqttClient.on('error', function() { setConn('wait'); });
+      mqttClient.on('reconnect', function() { setConn('wait'); });
+      mqttClient.on('close', function() { setConn('wait'); });
+      mqttClient.on('offline', function() { setConn('off'); });
 
     } catch(e) {
-      setConnStatus('reconnecting');
+      setConn('off');
+    }
+  }
+
+  function mqPub(topic, data) {
+    if (mqttClient && isConnected) {
+      try { mqttClient.publish(topic, JSON.stringify(data), {qos:0}); } catch(e) {}
     }
   }
 
   function publishPresence(action) {
-    if (!mqttClient || !isConnected || !currentUser) return;
-    mqttClient.publish(TOPIC_PRESENCE, JSON.stringify({
-      action: action,
-      userId: currentUser.id,
-      userName: currentUser.name,
-      userColor: currentUser.color,
-      ts: Date.now()
-    }), { qos: 0 });
+    var p = { action:action, userId:currentUser.id, userName:currentUser.name, userColor:currentUser.color, ts:Date.now() };
+    mqPub(TOPIC_PRESENCE, p);
+    bcSend({type:'presence', data:p});
   }
 
+  /* ══════════════════════════════════
+     History request/response
+     ══════════════════════════════════ */
   function requestHistory() {
-    if (!mqttClient || !isConnected || !currentUser) return;
-    var localMsgs = loadLocalMessages();
-    var knownIds = localMsgs.map(function(m) { return m.id; });
-    mqttClient.publish(TOPIC_HISTORY_REQ, JSON.stringify({
-      userId: currentUser.id,
-      userName: currentUser.name,
-      knownIds: knownIds,
-      ts: Date.now()
-    }), { qos: 0 });
+    var archive = loadArchive();
+    var knownIds = archive.map(function(m){return m.id;});
+    mqPub(TOPIC_HIST_REQ, { userId:currentUser.id, knownIds:knownIds, ts:Date.now() });
   }
 
-  // ── Incoming handler ──
-  function handleIncoming(topic, data) {
-    if (topic === TOPIC_MSG) {
-      if (renderedIds[data.id]) return;
-      // Don't double-render own messages
-      if (currentUser && data.userId === currentUser.id) return;
-      renderedIds[data.id] = true;
-      appendLocalMessage(data);
-      appendMessage(data, true);
-
-    } else if (topic === TOPIC_PRESENCE) {
-      if (!data.userId) return;
-      if (currentUser && data.userId === currentUser.id) return;
-
-      if (data.action === 'join' || data.action === 'heartbeat') {
-        var existing = onlineUsers[data.userId];
-        onlineUsers[data.userId] = { name: data.userName, color: data.userColor, lastSeen: data.ts || Date.now() };
-
-        if (data.action === 'join' && (!existing || Date.now() - (existing.lastSeen || 0) > 12000)) {
-          var sysMsg = { id: uid(), type: 'system', text: data.userName + ' joined the room', ts: data.ts || Date.now() };
-          appendLocalMessage(sysMsg);
-          appendSystemMsg(sysMsg.text, sysMsg.ts);
-          showToast(data.userName + ' joined');
-        }
-        renderUserList();
-
-      } else if (data.action === 'leave') {
-        delete onlineUsers[data.userId];
-        renderUserList();
-        var leaveMsg = { id: uid(), type: 'system', text: data.userName + ' left the room', ts: Date.now() };
-        appendLocalMessage(leaveMsg);
-        appendSystemMsg(leaveMsg.text, leaveMsg.ts);
-      }
-
-    } else if (topic === TOPIC_TYPING) {
-      if (currentUser && data.userId === currentUser.id) return;
-      if (data.action === 'typing') {
-        typingUsers[data.userName] = Date.now();
-      } else {
-        delete typingUsers[data.userName];
-      }
-
-    } else if (topic === TOPIC_HISTORY_REQ) {
-      // Someone is requesting history — respond if we have messages they don't
-      if (currentUser && data.userId === currentUser.id) return;
-      respondToHistoryRequest(data);
-
-    } else if (topic === TOPIC_HISTORY_RESP) {
-      // History response from a peer
-      if (currentUser && data.targetUserId !== currentUser.id) return;
-      processHistoryResponse(data);
-    }
-  }
-
-  function respondToHistoryRequest(req) {
-    var localMsgs = loadLocalMessages();
-    if (localMsgs.length === 0) return;
-
-    // Find messages the requester doesn't have
+  function handleHistReq(req) {
+    if (currentUser && req.userId===currentUser.id) return;
+    var local = loadArchive();
+    if (!local.length) return;
     var knownSet = {};
-    (req.knownIds || []).forEach(function(id) { knownSet[id] = true; });
-    var newMsgs = localMsgs.filter(function(m) { return !knownSet[m.id]; });
-
-    if (newMsgs.length === 0) return;
-
-    // Random delay to avoid all peers responding at once
-    var delay = 300 + Math.random() * 2000;
-    setTimeout(function() {
-      if (!mqttClient || !isConnected) return;
-
-      // Send in batches of 50 to avoid huge payloads
-      var batches = [];
-      for (var i = 0; i < newMsgs.length; i += 50) {
-        batches.push(newMsgs.slice(i, i + 50));
+    (req.knownIds||[]).forEach(function(id){knownSet[id]=true;});
+    var fresh = local.filter(function(m){return !knownSet[m.id];});
+    if (!fresh.length) return;
+    // Stagger to avoid thundering herd
+    var delay = 500 + Math.random()*2500;
+    setTimeout(function(){
+      // Send in chunks of 50
+      for (var i=0; i<fresh.length; i+=50) {
+        var chunk = fresh.slice(i, i+50);
+        mqPub(TOPIC_HIST_RESP, { targetUserId:req.userId, messages:chunk });
       }
-      batches.forEach(function(batch, idx) {
-        setTimeout(function() {
-          if (!mqttClient || !isConnected) return;
-          mqttClient.publish(TOPIC_HISTORY_RESP, JSON.stringify({
-            targetUserId: req.userId,
-            messages: batch,
-            batchIndex: idx,
-            totalBatches: batches.length,
-            ts: Date.now()
-          }), { qos: 0 });
-        }, idx * 200);
-      });
     }, delay);
   }
 
-  function processHistoryResponse(data) {
-    if (!data.messages || data.messages.length === 0) return;
-
-    var localMsgs = loadLocalMessages();
-    var localIndex = {};
-    localMsgs.forEach(function(m) { localIndex[m.id] = true; });
-
-    var newMsgs = data.messages.filter(function(m) { return !localIndex[m.id]; });
-    if (newMsgs.length === 0) return;
-
-    // Save to local storage
-    mergeLocalMessages(newMsgs);
-
-    // Re-render entire history from local storage to ensure correct ordering
-    var allMsgs = loadLocalMessages();
-    renderFullHistory(allMsgs);
+  function handleHistResp(resp) {
+    if (!currentUser || resp.targetUserId!==currentUser.id) return;
+    if (!resp.messages||!resp.messages.length) return;
+    var changed = mergeIntoArchive(resp.messages);
+    if (changed) renderFullArchive(loadArchive());
   }
 
-  // ── Send message ──
+  /* ══════════════════════════════════
+     Incoming: MQTT handler
+     ══════════════════════════════════ */
+  function handleMQTT(topic, data) {
+    if (topic === TOPIC_MSG) {
+      if (currentUser && data.userId===currentUser.id) return; // own message, already rendered
+      if (renderedIds[data.id]) return;
+      addToArchive(data);
+      renderMsg(data, true);
+    }
+    else if (topic === TOPIC_PRESENCE) {
+      handlePresence(data);
+    }
+    else if (topic === TOPIC_TYPING) {
+      if (currentUser && data.userId===currentUser.id) return;
+      if (data.action==='typing') typingUsers[data.userName]=Date.now();
+      else delete typingUsers[data.userName];
+    }
+    else if (topic === TOPIC_HIST_REQ) {
+      handleHistReq(data);
+    }
+    else if (topic === TOPIC_HIST_RESP) {
+      handleHistResp(data);
+    }
+  }
+
+  /* ══════════════════════════════════
+     Incoming: presence (shared by BC + MQTT)
+     ══════════════════════════════════ */
+  function handlePresence(d) {
+    if (!d.data) d = { data: d };
+    var p = d.data;
+    if (!p || !p.userId) return;
+    if (currentUser && p.userId===currentUser.id) return;
+
+    if (p.action==='join'||p.action==='heartbeat') {
+      var existed = onlineUsers[p.userId];
+      onlineUsers[p.userId] = { name:p.userName, color:p.userColor, lastSeen:p.ts||Date.now() };
+      if (p.action==='join' && (!existed || Date.now()-existed.lastSeen>12000)) {
+        var sm = {id:uid(), type:'system', text:p.userName+' joined the room', ts:p.ts||Date.now()};
+        addToArchive(sm); renderSys(sm.text, sm.ts);
+        toast(p.userName+' joined');
+      }
+      renderUsers();
+    }
+    else if (p.action==='leave') {
+      delete onlineUsers[p.userId];
+      renderUsers();
+      var lm = {id:uid(), type:'system', text:p.userName+' left the room', ts:Date.now()};
+      addToArchive(lm); renderSys(lm.text, lm.ts);
+    }
+  }
+
+  /* ══════════════════════════════════
+     Send message
+     ══════════════════════════════════ */
   function sendMessage() {
-    var text = msgInput.value.trim();
+    var text = $input.value.trim();
     if (!text || !currentUser) return;
 
     var msg = {
@@ -859,110 +667,102 @@
       ts: Date.now()
     };
 
-    renderedIds[msg.id] = true;
-    appendLocalMessage(msg);
-    appendMessage(msg, true);
+    // ★ THE KEY FIX: appendMessage checks renderedIds internally.
+    // We must NOT set renderedIds before calling it.
+    addToArchive(msg);
+    renderMsg(msg, true);
 
-    if (mqttClient && isConnected) {
-      mqttClient.publish(TOPIC_MSG, JSON.stringify(msg), { qos: 0 });
-    }
+    // Broadcast to other tabs
+    bcSend({type:'msg', msg:msg});
 
-    msgInput.value = '';
-    msgInput.style.height = 'auto';
-    sendBtn.disabled = true;
+    // Publish to MQTT (cross-device)
+    mqPub(TOPIC_MSG, msg);
 
-    publishTyping('stop');
-    clearTimeout(typingTimeout);
+    $input.value='';
+    $input.style.height='auto';
+    $sendBtn.disabled=true;
+    sendTyping('stop');
+    clearTimeout(typingTimer);
   }
 
-  // ── Typing ──
-  function publishTyping(action) {
-    if (!mqttClient || !isConnected || !currentUser) return;
-    mqttClient.publish(TOPIC_TYPING, JSON.stringify({
-      action: action,
-      userId: currentUser.id,
-      userName: currentUser.name
-    }), { qos: 0 });
+  /* ══════════════════════════════════
+     Typing
+     ══════════════════════════════════ */
+  function sendTyping(action) {
+    var d = {action:action, userId:currentUser.id, userName:currentUser.name};
+    mqPub(TOPIC_TYPING, d);
+    bcSend({type:'typing', userId:currentUser.id, userName:currentUser.name, action:action});
   }
 
-  // ── Stale user cleanup ──
-  setInterval(function() {
-    var now = Date.now();
-    var changed = false;
-    Object.keys(onlineUsers).forEach(function(id) {
-      if (currentUser && id === currentUser.id) return;
-      if (now - onlineUsers[id].lastSeen > 18000) {
-        var u = onlineUsers[id];
-        delete onlineUsers[id];
-        var leaveMsg = { id: uid(), type: 'system', text: u.name + ' disconnected', ts: Date.now() };
-        appendLocalMessage(leaveMsg);
-        appendSystemMsg(leaveMsg.text, leaveMsg.ts);
-        changed = true;
+  /* ══════════════════════════════════
+     Stale user cleanup
+     ══════════════════════════════════ */
+  setInterval(function(){
+    var now=Date.now(), changed=false;
+    Object.keys(onlineUsers).forEach(function(id){
+      if(currentUser&&id===currentUser.id) return;
+      if(now-onlineUsers[id].lastSeen>18000){
+        var u=onlineUsers[id]; delete onlineUsers[id];
+        var sm={id:uid(),type:'system',text:u.name+' disconnected',ts:Date.now()};
+        addToArchive(sm); renderSys(sm.text,sm.ts); changed=true;
       }
     });
-    if (changed) renderUserList();
+    if(changed) renderUsers();
   }, 6000);
 
-  // ── Event listeners ──
-  joinBtn.addEventListener('click', function() { joinChat(); });
-  nameInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') { e.preventDefault(); joinChat(); }
+  /* ══════════════════════════════════
+     Event listeners
+     ══════════════════════════════════ */
+  $joinBtn.addEventListener('click', joinChat);
+  $nameInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){e.preventDefault();joinChat();} });
+
+  $input.addEventListener('input', function(){
+    $sendBtn.disabled=!$input.value.trim();
+    $input.style.height='auto';
+    $input.style.height=Math.min($input.scrollHeight,120)+'px';
+    sendTyping('typing');
+    clearTimeout(typingTimer);
+    typingTimer=setTimeout(function(){sendTyping('stop');},2500);
   });
 
-  msgInput.addEventListener('input', function() {
-    sendBtn.disabled = !msgInput.value.trim();
-    msgInput.style.height = 'auto';
-    msgInput.style.height = Math.min(msgInput.scrollHeight, 120) + 'px';
-    publishTyping('typing');
-    clearTimeout(typingTimeout);
-    typingTimeout = setTimeout(function() { publishTyping('stop'); }, 2500);
+  $input.addEventListener('keydown', function(e){
+    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}
   });
 
-  msgInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-  });
+  $sendBtn.addEventListener('click', sendMessage);
 
-  sendBtn.addEventListener('click', sendMessage);
-
-  // Leave
-  leaveBtn.addEventListener('click', function() {
-    if (!currentUser) return;
+  $leaveBtn.addEventListener('click', function(){
+    if(!currentUser) return;
     publishPresence('leave');
-    if (heartbeatInterval) clearInterval(heartbeatInterval);
-    if (mqttClient) { try { mqttClient.end(true); } catch(e) {} mqttClient = null; }
-
-    onlineUsers = {};
-    renderedIds = {};
-    typingUsers = {};
-    isConnected = false;
-    currentUser = null;
-
-    chatApp.classList.remove('active');
-    entryScreen.classList.remove('hidden');
-    nameInput.value = '';
-    entryError.textContent = '';
-    nameInput.focus();
-    messagesArea.innerHTML = '';
+    if(heartbeatIv) clearInterval(heartbeatIv);
+    if(mqttClient) try{mqttClient.end(true);}catch(e){}
+    mqttClient=null;
+    if(bcChannel) try{bcChannel.close();}catch(e){}
+    bcChannel=null;
+    onlineUsers={}; renderedIds={}; typingUsers={}; isConnected=false; currentUser=null;
+    $app.classList.remove('active');
+    $entry.classList.remove('hidden');
+    $nameInput.value=''; $entryErr.textContent='';
+    $msgs.innerHTML=''; $nameInput.focus();
   });
 
-  // Mobile
-  mobileToggle.addEventListener('click', function() {
-    sidebar.classList.toggle('open');
-    sidebarOverlay.classList.toggle('active');
+  $mobToggle.addEventListener('click', function(){
+    $sidebar.classList.toggle('open');
+    $overlay.classList.toggle('active');
   });
-  sidebarOverlay.addEventListener('click', function() {
-    sidebar.classList.remove('open');
-    sidebarOverlay.classList.remove('active');
+  $overlay.addEventListener('click', function(){
+    $sidebar.classList.remove('open');
+    $overlay.classList.remove('active');
   });
 
-  // Cleanup
-  window.addEventListener('beforeunload', function() {
-    if (!currentUser) return;
+  window.addEventListener('beforeunload', function(){
+    if(!currentUser) return;
     publishPresence('leave');
-    if (mqttClient) { try { mqttClient.end(true); } catch(e) {} }
+    if(mqttClient) try{mqttClient.end(true);}catch(e){}
   });
 
-  nameInput.focus();
+  $nameInput.focus();
+
 })();
 </script>
 </body>
